@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
+    private GameManager gameManager;
+    private AnimalHunder animalHunder;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -17,9 +19,15 @@ public class DetectCollisions : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //Pizza Removal
-        Destroy(gameObject);
-        //Removing an animal
-        Destroy(other.gameObject);
+        if (other.CompareTag("Player"))
+        {
+            gameManager.AddLives(-1);
+            Destroy(gameObject);
+        }
+        else if(other.CompareTag("Animals"))
+        {
+            other.GetComponent<AnimalHunder>().FeedAnimal(1);
+            Destroy(gameObject);
+        }
     }
 }
