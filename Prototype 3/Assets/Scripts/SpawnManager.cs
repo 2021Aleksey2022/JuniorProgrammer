@@ -5,13 +5,15 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     //Ссылка на препятствие.
-    public GameObject obstaclePrefab;
+    public GameObject[] obstaclePrefab;
     //Позиция создания припятствия.
     private Vector3 spawnPos = new Vector3(25, 0, 0);
     //Через 2 секунды начнуться создаваться припятствия.
     private float startDelay = 2.0f;
     //Каждые 2 секунды создаются припятствия.
     private float repeatRate = 2.0f;
+    //Случайные припятствия.
+    private int randomObstacle;
     //Ссылка на класс PlayerController
     private PlayerController playerControllerScript;
     // Start is called before the first frame update
@@ -34,8 +36,9 @@ public class SpawnManager : MonoBehaviour
         //Пока игра не закончена
         if (playerControllerScript.gameOver == false)
         {
+            randomObstacle = Random.Range(0, obstaclePrefab.Length);
             //Создание припятствия.
-            Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+            Instantiate(obstaclePrefab[randomObstacle], spawnPos, obstaclePrefab[randomObstacle].transform.rotation);
         }
     }
 }

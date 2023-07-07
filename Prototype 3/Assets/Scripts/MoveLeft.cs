@@ -23,8 +23,15 @@ public class MoveLeft : MonoBehaviour
         //ѕока игра не закончена
         if (playerControllerScript.gameOver == false)
         {
-            //ƒвижение влево прип€тстви€ и Background.
-            transform.Translate(Vector3.left * Time.deltaTime * speedObstacle);
+            if (playerControllerScript.doubleSpeed)
+            {
+                //ƒвижение влево прип€тстви€ и Background.
+                transform.Translate(Vector3.left * Time.deltaTime * (speedObstacle * 2));
+            }
+            else
+            {
+                transform.Translate(Vector3.left * Time.deltaTime * speedObstacle);
+            }
         }
         //ѕровер€ем позицию прип€тстви€, если меньше кра€ границы, по тегу обращаемс€ к прип€тствию.
         if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle"))

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool doubleSpeed = false;
+    //Проверка , оспользуется двойной прыжок.
+    public bool doubleJumpUsed = false;
+    // Сила двойного прыжока.
+    public float doubleJumpForce;
     //Ссылка на системы частиц при столкновении с припятствием.
     public ParticleSystem explosionPatricle;
     //Ссылка на эффект частиц из под ног
@@ -50,7 +55,28 @@ public class PlayerController : MonoBehaviour
             //Анимация прыжка
             playerAnim.SetTrigger("Jump_trig");
             playerSound.PlayOneShot(jumpSound, 1.0f);
+            doubleJumpUsed = false;
         }
+        //Двойной прыжок
+        else if (Input.GetKeyDown(KeyCode.Space) && !isOnGround && !doubleJumpUsed)
+        {
+            doubleJumpUsed = true;
+            playerRb.AddForce(Vector3.up * doubleJumpForce, ForceMode.Impulse);
+            playerAnim.Play("Running_Jump", 3, 0f);
+            playerSound.PlayOneShot(jumpSound, 1.0f);
+        }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            doubleSpeed = true;
+            playerAnim.SetFloat("Speed_Multiplier", 2.0f);
+        }
+        else if (doubleSpeed)
+        {
+            doubleSpeed = false;
+            playerAnim.SetFloat("Speed_Multiplier", 1.0f);
+        }
+
+
     }
     private void OnCollisionEnter(Collision collision)
     {
