@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     //Ссылка на врага.
-    public GameObject enemyPrefabs;
-    public GameObject powerupPrefab;
+    public GameObject[] enemyPrefabs;
+    public GameObject[] powerupPrefabs;
     //Отсеживаем врагов.
     public int enemyCount;
     //Количество врагов.
@@ -16,10 +16,13 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Создать суперсилу.
+        int randomPowerup = Random.Range(0, powerupPrefabs.Length);
+        Instantiate(powerupPrefabs[randomPowerup], GenerateSpawnPosition(),
+        powerupPrefabs[randomPowerup].transform.rotation);
+
         //Вызов метода создания врага.
         SpawnEnemyWave(waveNumber);
-        //Создать суперсилу.
-        Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
     }
 
     // Update is called once per frame
@@ -31,7 +34,9 @@ public class SpawnManager : MonoBehaviour
         {
             waveNumber++;
             SpawnEnemyWave(waveNumber);
-            Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
+            int randomPowerup = Random.Range(0, powerupPrefabs.Length);
+            Instantiate(powerupPrefabs[randomPowerup], GenerateSpawnPosition(),
+            powerupPrefabs[randomPowerup].transform.rotation);
         }
     }
     //Метод создания врага.
@@ -39,8 +44,11 @@ public class SpawnManager : MonoBehaviour
     {
         for(int i = 0; i < enemiesToSpawn; i++)
         {
+            //Рандомная позиция врага.
+            int randomEnemy = Random.Range(0, enemyPrefabs.Length);
             //Создание врага.
-            Instantiate(enemyPrefabs, GenerateSpawnPosition(), enemyPrefabs.transform.rotation);
+            Instantiate(enemyPrefabs[randomEnemy], GenerateSpawnPosition(), 
+                enemyPrefabs[randomEnemy].transform.rotation);
         }
     }
     //Метод рандомной позиции.
