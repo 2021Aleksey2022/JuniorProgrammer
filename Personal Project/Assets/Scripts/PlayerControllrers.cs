@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerControllrers : MonoBehaviour
 {
-    private float speed = 6.0f;
-    private Rigidbody playerRb;
+    private float speed = 200.0f;
     private float zBoundUp = 11.0f;
     private float zBoundDown = -0.6f;
     private float reboundPlayer = 20.0f;
+    private Rigidbody playerRb;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +31,13 @@ public class PlayerControllrers : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall1"))
         {
             playerRb.AddForce(Vector3.left * reboundPlayer, ForceMode.Impulse);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PowerUp"))
+        {
+            Destroy(other.gameObject);
         }
     }
     void MovePlayer()
