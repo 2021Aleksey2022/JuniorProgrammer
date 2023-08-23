@@ -25,17 +25,23 @@ public class TargetX : MonoBehaviour
         StartCoroutine(RemoveObjectRoutine()); // begin timer before target leaves screen
 
     }
+    private void Update()
+    {
+        gameManagerX.UpdateTime();
+        
+    }
     private void OnMouseDown()
     {
-        
+        MouseClick();
+        gameManagerX.UpdateTime();
     }
 
     // When target is clicked, destroy it, update score, and generate explosion
     private void MouseClick()
-    {
-            Destroy(gameObject);
-            gameManagerX.UpdateScore(pointValue);
-            Explode();              
+    {        
+        Destroy(gameObject);
+        gameManagerX.UpdateScore(pointValue);
+        Explode();              
     }
 
     // Generate a random spawn position based on a random index from 0 to 3
@@ -69,7 +75,7 @@ public class TargetX : MonoBehaviour
     }
     public void DestroyTarget()
     {
-        MouseClick();
+        
         //Instantiate(explosionParticle, transform.position,
                         //explosionParticle.transform.rotation);
     }

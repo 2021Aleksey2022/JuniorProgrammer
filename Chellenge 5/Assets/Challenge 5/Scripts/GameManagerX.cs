@@ -78,22 +78,20 @@ public class GameManagerX : MonoBehaviour
         }
     }
     private void Update()
-    {        
-        UpdateTime();
+    {
         if (Input.GetKeyDown(KeyCode.P))
         {
             ChangePaused();
         }
     }
-    private void UpdateTime()
+    public void UpdateTime()
     {
-        if(timer > 0)
+        if (timer > 0)
         {
-            
             timer -= Time.deltaTime;
             timeText.text = "Time : " + Mathf.Round(timer).ToString();
         }
-        else if(timer <= 0)
+        else if (timer <= 0)
         {
             timer = 0;
             GameOver();
