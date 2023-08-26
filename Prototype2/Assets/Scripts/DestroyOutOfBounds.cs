@@ -1,31 +1,35 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyOutOfBounds : MonoBehaviour
 {
-    private float topBound = 30.0f;
-    private float lowerBound = -10.0f;
-    private GameManager gameManager;
+    private float topBound = 30;
+    private float lowerBound = -10;
+
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); 
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Граница  за которой снаряд(пицца) удаляется
         if (transform.position.z > topBound)
         {
-            Destroy(gameObject);
+            // Instead of destroying the projectile when it leaves the screen
+            //Destroy(gameObject);
+
+            // Just deactivate it
+            gameObject.SetActive(false);
+
         }
-        //Граница за которой животные удаляются
-        else if(transform.position.z < lowerBound)
+        else if (transform.position.z < lowerBound)
         {
+            Debug.Log("Game Over!");
             Destroy(gameObject);
-            gameManager.AddLives(-1);
         }
+
     }
 }

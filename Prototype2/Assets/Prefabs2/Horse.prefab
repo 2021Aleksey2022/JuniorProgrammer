@@ -653,7 +653,6 @@ GameObject:
   - component: {fileID: 6769972447444414737}
   - component: {fileID: 6769972447444414736}
   - component: {fileID: 6769972447444414741}
-  - component: {fileID: 6221427577881835541}
   - component: {fileID: 1266608308749248667}
   m_Layer: 0
   m_Name: Horse
@@ -741,18 +740,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6e64fc3a5eca55418446c2e30ddd45a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6221427577881835541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6769972447444296069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69ebb48e9ea900a4789143b91e9c2e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1266608308749248667
